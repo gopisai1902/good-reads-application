@@ -36,4 +36,34 @@ public class BookService implements BookRepository {
 
         return book;
     }
+    @Override
+    public Book updateBook(Book book, int bookId){
+        Book existingBook = hmap.get(bookId);
+        if(existingBook == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        if(book.getName() != null){
+            existingBook.setName(book.getName());
+        }
+        if(book.getImageUrl() != null){
+            existingBook.setImageUrl(book.getImageUrl());
+        }
+        return existingBook;
+    }
+
+    @Override
+    public void deleteBook(int bookId){
+        Book book = hmap.get(bookId);
+
+        if(book == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        else{
+            hmap.remove(bookId);
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+
+
+    }
 }
