@@ -1,12 +1,17 @@
-package com.example.goodreads;
+package com.example.goodreads.controller;
 
+import com.example.goodreads.model.Book;
+import com.example.goodreads.service.BookH2Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 public class BookController {
-    BookService bookService = new BookService();
+   // BookService bookService = new BookService();
+    @Autowired
+    public BookH2Service bookService;
 
     @GetMapping("/books")
     public ArrayList<Book> getBooks(){

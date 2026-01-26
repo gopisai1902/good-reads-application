@@ -1,11 +1,13 @@
-package com.example.goodreads;
+package com.example.goodreads.service;
+import com.example.goodreads.model.Book;
+import com.example.goodreads.repository.BookRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
 public class BookService implements BookRepository {
-    private HashMap<Integer,Book>hmap = new HashMap<Integer, Book>();
+    private HashMap<Integer, Book>hmap = new HashMap<Integer, Book>();
     int newBookId = 3;
     public  BookService(){
         Book b1 = new Book(1,"HarryPotter", "harry.jpeg");
