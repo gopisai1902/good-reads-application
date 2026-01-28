@@ -1,5 +1,6 @@
 package com.example.goodreads.model;
 
+import com.example.goodreads.model.Publisher;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,13 +15,18 @@ public class Book {
     @Column(name = "imageurl")
     private String imageUrl;
 
+    @ManyToOne
+    @JoinColumn(name = " publisherid")
+    private Publisher publisher;
+
     public Book(){
 
     }
-    public Book(Integer id, String name, String imageUrl){
+    public Book(Integer id, String name, String imageUrl, Publisher publisher){
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
+        this.publisher = publisher;
     }
 
     public Integer getId() {
@@ -45,5 +51,13 @@ public class Book {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Publisher getPublisher(){
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher){
+        this.publisher = publisher;
     }
 }
